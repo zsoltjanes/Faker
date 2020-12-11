@@ -32,12 +32,12 @@
         }
     },
     "conflict": {
-        "fzaninotto/faker": "!=1.9.1",
-        "ergebnis/faker": "!=1.9.1"
+        "fzaninotto/faker": "!=1.9.2",
+        "ergebnis/faker": "!=1.9.2"
     },
     "replace": {
-        "fzaninotto/faker": "1.9.1",
-        "ergebnis/faker": "1.9.1"
+        "fzaninotto/faker": "1.9.2",
+        "ergebnis/faker": "1.9.2"
     },
     "config": {
         "sort-packages": true
