@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2020-12-11, v1.9.2
+
+This is a security release that prevents a hacker to execute code on the server.
+
 ## 2019-12-03, v1.9.1
 
 - Add link to PHPStan extension to readme [\#1834](https://github.com/fzaninotto/Faker/pull/1834) ([finwe](https://github.com/finwe))
