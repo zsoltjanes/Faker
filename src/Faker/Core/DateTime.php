@@ -40,6 +40,16 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
         return strtotime(empty($max) ? 'now' : $max);
     }
 
+    /**
+     * Get a DateTime created based on a POSIX-timestamp.
+     *
+     * @param int $timestamp the UNIX / POSIX-compatible timestamp
+     */
+    protected function getTimestampDateTime(int $timestamp): \DateTime
+    {
+        return new \DateTime('@' . $timestamp);
+    }
+
     protected function setDefaultTimezone(string $timezone = null): void
     {
         $this->defaultTimezone = $timezone;
@@ -72,7 +82,7 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
     public function dateTime($until = 'now', string $timezone = null): \DateTime
     {
         return $this->setTimezone(
-            new \DateTime('@' . $this->unixTime($until)),
+            $this->getTimestampDateTime($this->unixTime($until)),
             $timezone
         );
     }
@@ -82,7 +92,7 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
         $min = (PHP_INT_SIZE > 4) ? -62135597361 : -PHP_INT_MAX;
 
         return $this->setTimezone(
-            new \DateTime('@' . $this->generator->numberBetween($min, $this->getTimestamp($until))),
+            $this->getTimestampDateTime($this->generator->numberBetween($min, $this->getTimestamp($until))),
             $timezone
         );
     }
@@ -99,19 +109,27 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
         $timestamp = $this->generator->numberBetween($start, $end);
 
         return $this->setTimezone(
-            new \DateTime('@' . $timestamp),
+            $this->getTimestampDateTime($timestamp),
             $timezone
         );
     }
 
     public function dateTimeInInterval($from = '-30 years', string $interval = '+5 days', string $timezone = null): \DateTime
     {
-        // TODO: Implement dateTimeInInterval() method.
+        $intervalObject = \DateInterval::createFromDateString($interval);
+        $datetime = $from instanceof \DateTime ? $from : new \DateTime($from);
+
+        $other = (clone $datetime)->add($intervalObject);
+
+        $begin = min($datetime, $other);
+        $end = $datetime === $begin ? $other : $datetime;
+
+        return $this->dateTimeBetween($begin, $end, $timezone);
     }
 
     public function dateTimeThisWeek($until = 'now', string $timezone = null): \DateTime
     {
-        // TODO: Implement dateTimeThisWeek() method.
+        return $this->dateTimeBetween('-1 week', $timezone);
     }
 
     public function dateTimeThisMonth($until = 'now', string $timezone = null): \DateTime

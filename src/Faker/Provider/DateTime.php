@@ -181,7 +181,7 @@ class DateTime extends Base
         $otherDatetime = clone $datetime;
         $otherDatetime->add($intervalObject);
 
-        $begin = $datetime > $otherDatetime ? $otherDatetime : $datetime;
+        $begin = min($datetime, $otherDatetime);
         $end = $datetime === $begin ? $otherDatetime : $datetime;
 
         return static::dateTimeBetween(
