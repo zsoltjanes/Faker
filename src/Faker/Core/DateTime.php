@@ -82,7 +82,7 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
         $min = (PHP_INT_SIZE > 4) ? -62135597361 : -PHP_INT_MAX;
 
         return $this->setTimezone(
-            new \DateTime('@', $this->generator->numberBetween($min, $this->getTimestamp($until))),
+            new \DateTime('@' . $this->generator->numberBetween($min, $this->getTimestamp($until))),
             $timezone
         );
     }
@@ -100,7 +100,7 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
 
         return $this->setTimezone(
             new \DateTime('@' . $timestamp),
-            $timezone,
+            $timezone
         );
     }
 
