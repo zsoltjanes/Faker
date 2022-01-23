@@ -2,24 +2,11 @@
 
 namespace Faker\Provider;
 
-use Faker\Extension\DateTimeExtension;
-
 class DateTime extends Base
 {
     protected static $century = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'];
 
     protected static $defaultTimezone = null;
-
-    protected static $extension = null;
-
-    protected static function getExtension(): DateTimeExtension
-    {
-        if (null === self::$extension) {
-            return self::$extension = new \Faker\Core\DateTime();
-        }
-
-        return self::$extension;
-    }
 
     /**
      * @param \DateTime|float|int|string $max
@@ -50,7 +37,7 @@ class DateTime extends Base
      */
     public static function unixTime($max = 'now')
     {
-        return self::getExtension()->unixTime($max);
+        return self::numberBetween(0, static::getMaxTimestamp($max));
     }
 
     /**
@@ -68,7 +55,10 @@ class DateTime extends Base
      */
     public static function dateTime($max = 'now', $timezone = null)
     {
-        return self::getExtension()->dateTime($max, $timezone);
+        return static::setTimezone(
+            new \DateTime('@' . static::unixTime($max)),
+            $timezone
+        );
     }
 
     /**
@@ -155,7 +145,19 @@ class DateTime extends Base
      */
     public static function dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null)
     {
-        self::getExtension()->dateTimeBetween($startDate, $endDate, $timezone);
+        $startTimestamp = $startDate instanceof \DateTime ? $startDate->getTimestamp() : strtotime($startDate);
+        $endTimestamp = static::getMaxTimestamp($endDate);
+
+        if ($startTimestamp > $endTimestamp) {
+            throw new \InvalidArgumentException('Start date must be anterior to end date.');
+        }
+
+        $timestamp = self::numberBetween($startTimestamp, $endTimestamp);
+
+        return static::setTimezone(
+            new \DateTime('@' . $timestamp),
+            $timezone
+        );
     }
 
     /**

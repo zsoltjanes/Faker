@@ -5,6 +5,7 @@ namespace Faker\Core;
 use Faker\Extension\DateTimeExtension;
 use Faker\Extension\GeneratorAwareExtension;
 use Faker\Extension\GeneratorAwareExtensionTrait;
+use Faker\Extension\Helper;
 
 /**
  * @experimental
@@ -14,6 +15,11 @@ use Faker\Extension\GeneratorAwareExtensionTrait;
 final class DateTime implements DateTimeExtension, GeneratorAwareExtension
 {
     use GeneratorAwareExtensionTrait;
+
+    /**
+     * @var string[]
+     */
+    private $centuries = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'];
 
     /**
      * @var string
@@ -37,7 +43,7 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
             return $until->getTimestamp();
         }
 
-        return strtotime(empty($max) ? 'now' : $max);
+        return strtotime(empty($until) ? 'now' : $until);
     }
 
     /**
@@ -127,88 +133,92 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
         return $this->dateTimeBetween($begin, $end, $timezone);
     }
 
-    public function dateTimeThisWeek($until = 'now', string $timezone = null): \DateTime
+    public function dateTimeThisWeek($until = 'sunday this week', string $timezone = null): \DateTime
     {
-        return $this->dateTimeBetween('-1 week', $timezone);
+        return $this->dateTimeBetween('monday this week', $until, $timezone);
     }
 
-    public function dateTimeThisMonth($until = 'now', string $timezone = null): \DateTime
+    public function dateTimeThisMonth($until = 'last day of this month', string $timezone = null): \DateTime
     {
-        // TODO: Implement dateTimeThisMonth() method.
+        return $this->dateTimeBetween('first day of this month', $until, $timezone);
     }
 
-    public function dateTimeThisYear($until = 'now', string $timezone = null): \DateTime
+    public function dateTimeThisYear($until = 'last day of december', string $timezone = null): \DateTime
     {
-        // TODO: Implement dateTimeThisYear() method.
+        return $this->dateTimeBetween('first day of january', $until, $timezone);
     }
 
     public function dateTimeThisDecade($until = 'now', string $timezone = null): \DateTime
     {
-        // TODO: Implement dateTimeThisDecade() method.
+        $year = floor(date('Y') / 10) * 10;
+
+        return $this->dateTimeBetween("first day of january $year", $until, $timezone);
     }
 
     public function dateTimeThisCentury($until = 'now', string $timezone = null): \DateTime
     {
-        // TODO: Implement dateTimeThisCentury() method.
+        $year = floor(date('Y') / 100) * 100;
+
+        return $this->dateTimeBetween("first day of january $year", $until, $timezone);
     }
 
     public function date(string $format = 'Y-m-d', $until = 'now'): string
     {
-        // TODO: Implement date() method.
+        return $this->dateTime($until)->format($format);
     }
 
-    public function time(string $format = 'Y-m-d', $until = 'now'): string
+    public function time(string $format = 'H:i:s', $until = 'now'): string
     {
-        // TODO: Implement time() method.
+        return $this->date($format, $until);
     }
 
     public function unixTime($until = 'now'): int
     {
-        // TODO: Implement unixTime() method.
+        return $this->unixTime($until);
     }
 
     public function iso8601($until = 'now'): string
     {
-        // TODO: Implement iso8601() method.
+        return $this->date(\DateTime::ISO8601, $until);
     }
 
     public function amPm($until = 'now'): string
     {
-        // TODO: Implement amPm() method.
+        return $this->date('a', $until);
     }
 
     public function dayOfMonth($until = 'now'): string
     {
-        // TODO: Implement dayOfMonth() method.
+        return $this->date('d', $until);
     }
 
     public function dayOfWeek($until = 'now'): string
     {
-        // TODO: Implement dayOfWeek() method.
+        return $this->date('l', $until);
     }
 
     public function month($until = 'now'): string
     {
-        // TODO: Implement month() method.
+        return $this->date('m', $until);
     }
 
     public function monthName($until = 'now'): string
     {
-        // TODO: Implement monthName() method.
+        return $this->date('F', $until);
     }
 
     public function year($until = 'now'): string
     {
-        // TODO: Implement year() method.
+        return $this->date('Y', $until);
     }
 
     public function century(): string
     {
-        // TODO: Implement century() method.
+        return Helper::randomElement($this->centuries);
     }
 
     public function timezone(): string
     {
-        // TODO: Implement timezone() method.
+        return Helper::randomElement(\DateTimeZone::listIdentifiers());
     }
 }

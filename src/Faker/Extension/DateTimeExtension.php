@@ -144,7 +144,7 @@ interface DateTimeExtension
      *
      * @see https://www.php.net/manual/en/datetime.format.php
      */
-    public function time(string $format = 'Y-m-d', $until = 'now'): string;
+    public function time(string $format = 'H:i:s', $until = 'now'): string;
 
     /**
      * Get a UNIX (POSIX-compatible) timestamp between January 1, 1970, and `$until`.
