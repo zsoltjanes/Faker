@@ -6,6 +6,7 @@ use Faker\Extension\DateTimeExtension;
 use Faker\Extension\GeneratorAwareExtension;
 use Faker\Extension\GeneratorAwareExtensionTrait;
 use Faker\Extension\Helper;
+use Faker\Extension\NumberExtension;
 
 /**
  * @experimental
@@ -174,7 +175,7 @@ final class DateTime implements DateTimeExtension, GeneratorAwareExtension
 
     public function unixTime($until = 'now'): int
     {
-        return $this->unixTime($until);
+        return $this->generator->numberBetween(0, $this->getTimestamp($until));
     }
 
     public function iso8601($until = 'now'): string
