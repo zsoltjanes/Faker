@@ -26,7 +26,7 @@ interface DateTimeExtension
     public function dateTime($until = 'now', string $timezone = null): \DateTime;
 
     /**
-     * Get a datetime object for a date between January 1, 001 and now.
+     * Get a DateTime object for a date between January 1, 0001, and now.
      *
      * @param \DateTime|int|string $until    maximum timestamp, defaults to "now"
      * @param string|null          $timezone zone timezone for generated date, fallback to `DateTime::$defaultTimezone` and `date_default_timezone_get()`.
