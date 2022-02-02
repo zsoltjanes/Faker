@@ -6,7 +6,6 @@ use Faker\Extension\DateTimeExtension;
 use Faker\Extension\GeneratorAwareExtension;
 use Faker\Extension\GeneratorAwareExtensionTrait;
 use Faker\Extension\Helper;
-use Faker\Extension\NumberExtension;
 
 /**
  * @experimental
