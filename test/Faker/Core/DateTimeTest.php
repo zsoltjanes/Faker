@@ -125,7 +125,7 @@ final class DateTimeTest extends TestCase
     {
         $unixTime = $this->extension->unixTime('1993-08-29T15:10:00');
 
-        self::assertIsString($unixTime);
+        self::assertIsInt($unixTime);
         self::assertEquals(432630664, $unixTime);
     }
 
