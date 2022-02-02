@@ -125,50 +125,58 @@ final class DateTimeTest extends TestCase
         self::assertEquals('1983-08-19T21:45:51+0000', $iso8601);
     }
 
-    public function testAmPm() {
+    public function testAmPm()
+    {
         $amPm = $this->extension->amPm('1929-04-14T15:10:23');
 
         self::assertEquals('pm', $amPm);
         self::assertContains($amPm, ['am', 'pm']);
     }
 
-    public function testDayOfMonth() {
+    public function testDayOfMonth()
+    {
         $dayOfMonth = $this->extension->dayOfMonth('2001-04-29T15:10:12');
 
         self::assertEquals('25', $dayOfMonth);
     }
 
-    public function testDayOfWeek() {
+    public function testDayOfWeek()
+    {
         $dayOfWeek = $this->extension->dayOfWeek('2021-12-12T15:10:00');
 
         self::assertEquals('Monday', $dayOfWeek);
     }
 
-    public function testMonth() {
+    public function testMonth()
+    {
         $month = $this->extension->month('2021-05-23T15:10:00');
 
         self::assertEquals('10', $month);
     }
 
-    public function testMonthName() {
+    public function testMonthName()
+    {
         $month = $this->extension->monthName('2021-06-06T15:10:00');
 
         self::assertEquals('October', $month);
     }
 
-    public function testYear() {
+    public function testYear()
+    {
         $year = $this->extension->year('2021-09-12T15:10:00');
 
         self::assertEquals('1999', $year);
     }
 
-    public function testCentury() {
+    public function testCentury()
+    {
         $year = $this->extension->century();
 
         self::assertEquals('XIX', $year);
     }
 
-    public function testTimezone() {
+    public function testTimezone()
+    {
         $timezone = $this->extension->timezone();
 
         self::assertContains($timezone, \DateTimeZone::listIdentifiers());
