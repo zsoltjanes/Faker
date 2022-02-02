@@ -32,6 +32,15 @@ final class DateTimeTest extends TestCase
         self::assertEquals(new \DateTime('1990-09-29T12:12:53'), $dateTime);
     }
 
+    public function testDateTimeWithTimezone()
+    {
+        $dateTime = $this->extension->dateTime('2021-09-05T15:10:00', 'America/Los_Angeles');
+
+        self::assertInstanceOf(\DateTime::class, $dateTime);
+        self::assertEquals(new \DateTime('1999-12-11T22:41:46.000000-0800'), $dateTime);
+        self::assertEquals(new \DateTimeZone('America/Los_Angeles'), $dateTime->getTimezone());
+    }
+
     public function testDateTimeAD()
     {
         $dateTime = $this->extension->dateTimeAD('2012-04-12T19:22:23');
@@ -46,6 +55,12 @@ final class DateTimeTest extends TestCase
 
         self::assertInstanceOf(\DateTime::class, $dateTime);
         self::assertEquals(new \DateTime('2002-04-17T09:33:38'), $dateTime);
+    }
+
+    public function testDateTimeBetweenShouldThrowIfFromIsNotAnteriorToUntil()
+    {
+        self::expectException(\InvalidArgumentException::class);
+        $this->extension->dateTimeBetween('2004-09-15T22:10:45', '1998-12-18T11:23:40');
     }
 
     public function testDateTimeInInterval()
@@ -127,6 +142,14 @@ final class DateTimeTest extends TestCase
 
         self::assertIsInt($unixTime);
         self::assertEquals(432630664, $unixTime);
+    }
+
+    public function testUnitTimeWithNumericUntil()
+    {
+        $unixTime = $this->extension->unixTime(1643830258);
+
+        self::assertIsInt($unixTime);
+        self::assertEquals(952499510, $unixTime);
     }
 
     public function testIso8601()
