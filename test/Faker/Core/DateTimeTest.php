@@ -169,8 +169,8 @@ final class DateTimeTest extends TestCase
     }
 
     public function testTimezone() {
-        $year = $this->extension->timezone();
+        $timezone = $this->extension->timezone();
 
-        self::assertEquals('Atlantic/Canary', $year);
+        self::assertContains($timezone, \DateTimeZone::listIdentifiers());
     }
 }
