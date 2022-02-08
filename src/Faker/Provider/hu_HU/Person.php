@@ -16,9 +16,8 @@ class Person extends \Faker\Provider\Person
         '{{title}} {{lastName}} {{firstNameFemale}}',
         '{{lastName}} {{firstNameFemale}} {{suffix}}',
         '{{title}} {{lastName}} {{firstNameFemale}} {{suffix}}',
-        // ..né
-        '{{lastName}} {{firstNameMaleNe}}',
-        '{{title}} {{lastName}} {{firstNameMaleNe}}',
+        '{{lastNameFemaleMarried}} {{$lastName}} {{firstNameFemale}}',
+        '{{title}} {{lastNameFemaleMarried}} {{firstNameFemale}}',
     ];
 
     protected static $firstNameMale = [
@@ -28,11 +27,17 @@ class Person extends \Faker\Provider\Person
         'Benedek', 'Hunor', 'Jenő', 'János', 'Mihály', 'Mátyás', 'Szervác', 'Zsombor', 'Zétény', 'Árpád',
     ];
 
-    protected static $firstNameMaleNe = [
-        'Albertné', 'Attiláné', 'Balázsné', 'Bencéné', 'Botondné', 'Doriánné', 'Endrené', 'Ernőné', 'Gáborné', 'Gézané', 'Imréné', 'Istvánné',
-        'Kevinné', 'Kornélné', 'Kristófné', 'Lászlóné', 'Milánné', 'Noelné', 'Olivérné', 'Ottóné', 'Patrikné', 'Péterné', 'Richárdné', 'Rudolfné',
-        'Sándorné', 'Vilmosné', 'Vincéné', 'Zoltánné', 'Zsoltné', 'Ádámné', 'Árminné', 'Áronné', 'Antalné', 'Barnáné', 'Barnabásné', 'Bendegúz',
-        'Benedekné', 'Hunorné', 'Jenőné', 'Jánosné', 'Mihályné', 'Mátyásné', 'Szervácné', 'Zsomborné', 'Zétényné', 'Árpádné',
+    protected static $lastNameFemaleMarried = [
+        'Antalné', 'Bakosné', 'Ballané', 'Balogné', 'Baloghné', 'Balázsné', 'Barnáné', 'Bartáné', 'Biróné', 'Bodnárné',
+        'Bogdánné', 'Bognárné', 'Borbélyné', 'Borosné', 'Budainé', 'Bálintné', 'Csonkáné', 'Deákné', 'Dobosné', 'Dudásné',
+        'Faragóné', 'Farkasné', 'Fazekasné', 'Fehérné', 'Feketéné', 'Fodorné', 'Fábiánné', 'Fülöpné', 'Gulyásné', 'Gálné',
+        'Gáspárné', 'Hajdúné', 'Halászné', 'Hegedűsné', 'Horváthné', 'Illésné', 'Jakabné', 'Juhászné', 'Jónásné', 'Katonáné',
+        'Kelemenné', 'Kerekesné', 'Királyné', 'Kisné', 'Kissné', 'Kocsisné', 'Kovácsné', 'Kozmané', 'Lakatosné', 'Lengyelné',
+        'Lukácsné', 'Lászlóné', 'Magyarné', 'Majorné', 'Molnárné', 'Máténé', 'Mészárosné', 'Nagyné', 'Nemesné', 'Novákné',
+        'Némethné', 'Oláhné', 'Orbánné', 'Oroszné', 'Orsósné', 'Papné', 'Pappné', 'Patakiné', 'Pintérné', 'Pálné', 'Pásztorné',
+        'Péterné', 'Ráczné', 'Simonné', 'Siposné', 'Somogyiné', 'Soósné', 'Szabóné', 'Szalainé', 'Szekeresné', 'Szilágyiné',
+        'Székelyné', 'Szücsné', 'Szőkené', 'Szűcsné', 'Sándorné', 'Takácsné', 'Tamásné', 'Tóthné', 'Törökné', 'Vargáné', 'Vassné',
+        'Veresné', 'Vinczéné', 'Virágné', 'Váradiné', 'Véghné', 'Vörösné',
     ];
 
     protected static $firstNameFemale = [
@@ -48,40 +53,23 @@ class Person extends \Faker\Provider\Person
         'Antal', 'Bakos', 'Balla', 'Balog', 'Balogh', 'Balázs', 'Barna', 'Barta', 'Biró', 'Bodnár', 'Bogdán', 'Bognár', 'Borbély', 'Boros', 'Budai', 'Bálint', 'Csonka', 'Deák', 'Dobos', 'Dudás', 'Faragó', 'Farkas', 'Fazekas', 'Fehér', 'Fekete', 'Fodor', 'Fábián', 'Fülöp', 'Gulyás', 'Gál', 'Gáspár', 'Hajdu', 'Halász', 'Hegedüs', 'Hegedűs', 'Horváth', 'Illés', 'Jakab', 'Juhász', 'Jónás', 'Katona', 'Kelemen', 'Kerekes', 'Király', 'Kis', 'Kiss', 'Kocsis', 'Kovács', 'Kozma', 'Lakatos', 'Lengyel', 'Lukács', 'László', 'Magyar', 'Major', 'Molnár', 'Máté', 'Mészáros', 'Nagy', 'Nemes', 'Novák', 'Németh', 'Oláh', 'Orbán', 'Orosz', 'Orsós', 'Pap', 'Papp', 'Pataki', 'Pintér', 'Pál', 'Pásztor', 'Péter', 'Rácz', 'Simon', 'Sipos', 'Somogyi', 'Soós', 'Szabó', 'Szalai', 'Szekeres', 'Szilágyi', 'Székely', 'Szücs', 'Szőke', 'Szűcs', 'Sándor', 'Takács', 'Tamás', 'Tóth', 'Török', 'Varga', 'Vass', 'Veres', 'Vincze', 'Virág', 'Váradi', 'Végh', 'Vörös',
     ];
 
-    protected static $title = ['Dr.', 'Prof.', 'id.', 'ifj.'];
+    protected static $titleFemale = ['Özv.', 'Dr.', 'Prof.'];
+
+    protected static $titleMale = ['Dr.', 'Prof.', 'Id.', 'Ifj.', 'Báró', 'Gróf'];
 
     private static $suffix = ['PhD'];
 
-    public function title($gender = null)
-    {
-        return static::titleMale();
-    }
-
     /**
-     * replaced by specific unisex hungarian title
+     * Specific Hungarian name format for females after marriage
      */
-    public static function titleMale()
+    public static function lastNameFemaleMarried()
     {
-        return static::randomElement(static::$title);
+        return static::randomElement(static::$lastNameFemaleMarried);
     }
 
     /**
-     * specific Hungarian name format for females after marriage
-     */
-    public static function firstNameMaleNe()
-    {
-        return static::randomElement(static::$firstNameMaleNe);
-    }
-
-    /**
-     * replaced by specific unisex hungarian title
-     */
-    public static function titleFemale()
-    {
-        return static::titleMale();
-    }
-
-    /**
+     * Replaced by specific suffix
+     *
      * @example 'PhD'
      */
     public static function suffix()
