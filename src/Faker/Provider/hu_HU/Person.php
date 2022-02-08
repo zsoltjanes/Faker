@@ -11,6 +11,9 @@ class Person extends \Faker\Provider\Person
         '{{title}} {{lastName}} {{firstNameMale}} {{suffix}}',
     ];
 
+    /**
+     * @see https://en.wikipedia.org/wiki/Hungarian_names
+     */
     protected static $femaleNameFormats = [
         '{{lastName}} {{firstNameFemale}}',
         '{{title}} {{lastName}} {{firstNameFemale}}',
