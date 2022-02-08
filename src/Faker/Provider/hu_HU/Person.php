@@ -21,6 +21,8 @@ class Person extends \Faker\Provider\Person
         '{{title}} {{lastName}} {{firstNameFemale}} {{suffix}}',
         '{{lastNameFemaleMarried}} {{$lastName}} {{firstNameFemale}}',
         '{{title}} {{lastNameFemaleMarried}} {{firstNameFemale}}',
+        '{{lastName}} {{firstNameMaleNe}}',
+        '{{title}} {{lastName}} {{firstNameMaleNe}}',
     ];
 
     protected static $firstNameMale = [
@@ -30,8 +32,15 @@ class Person extends \Faker\Provider\Person
         'Benedek', 'Hunor', 'Jenő', 'János', 'Mihály', 'Mátyás', 'Szervác', 'Zsombor', 'Zétény', 'Árpád',
     ];
 
+    protected static $firstNameMaleNe = [
+        'Albertné', 'Attiláné', 'Balázsné', 'Bencéné', 'Botondné', 'Doriánné', 'Endrené', 'Ernőné', 'Gáborné', 'Gézané', 'Imréné', 'Istvánné',
+        'Kevinné', 'Kornélné', 'Kristófné', 'Lászlóné', 'Milánné', 'Noelné', 'Olivérné', 'Ottóné', 'Patrikné', 'Péterné', 'Richárdné', 'Rudolfné',
+        'Sándorné', 'Vilmosné', 'Vincéné', 'Zoltánné', 'Zsoltné', 'Ádámné', 'Árminné', 'Áronné', 'Antalné', 'Barnáné', 'Barnabásné', 'Bendegúz',
+        'Benedekné', 'Hunorné', 'Jenőné', 'Jánosné', 'Mihályné', 'Mátyásné', 'Szervácné', 'Zsomborné', 'Zétényné', 'Árpádné',
+    ];
+
     protected static $lastNameFemaleMarried = [
-        'Antalné', 'Bakosné', 'Ballané', 'Balogné', 'Baloghné', 'Balázsné', 'Barnáné', 'Bartáné', 'Biróné', 'Bodnárné',
+        'Antalné', 'Bakosné', 'Balláné', 'Balogné', 'Baloghné', 'Balázsné', 'Barnáné', 'Bartáné', 'Biróné', 'Bodnárné',
         'Bogdánné', 'Bognárné', 'Borbélyné', 'Borosné', 'Budainé', 'Bálintné', 'Csonkáné', 'Deákné', 'Dobosné', 'Dudásné',
         'Faragóné', 'Farkasné', 'Fazekasné', 'Fehérné', 'Feketéné', 'Fodorné', 'Fábiánné', 'Fülöpné', 'Gulyásné', 'Gálné',
         'Gáspárné', 'Hajdúné', 'Halászné', 'Hegedűsné', 'Horváthné', 'Illésné', 'Jakabné', 'Juhászné', 'Jónásné', 'Katonáné',
