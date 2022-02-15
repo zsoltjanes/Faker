@@ -2,12 +2,13 @@
 
 namespace Faker\Provider\hu_HU;
 
+/**
+ * More info about the hungarian names and hungarian name abbreviations can be found here:
+ *
+ * @see https://en.wikipedia.org/wiki/Hungarian_names and https://en.wiktionary.org/wiki/Category:Hungarian_abbreviations
+ */
 class Person extends \Faker\Provider\Person
 {
-    /**
-     * @see https://en.wikipedia.org/wiki/Hungarian_names
-     */
-
     protected static $maleNameFormats = [
         '{{lastName}} {{firstNameMale}}',
         '{{title}} {{lastName}} {{firstNameMale}}',
